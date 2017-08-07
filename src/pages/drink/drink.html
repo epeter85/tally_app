@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>drink</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list radio-group>
+    <ion-list-header>
+      Log a drink
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Beer</ion-label>
+      <ion-radio (ionSelect)="drinkType('beer')" checked></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Wine</ion-label>
+      <ion-radio (ionSelect)="drinkType('wine')"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Liquor</ion-label>
+      <ion-radio (ionSelect)="drinkType('liquor')"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button color="light" (click)="submitDrink()">Submit</button>
+
+</ion-content>
