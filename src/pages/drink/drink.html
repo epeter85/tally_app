@@ -13,25 +13,33 @@
     <ion-list-header>
       Log a drink
     </ion-list-header>
-
+<!-- 
     <ion-item>
       <ion-label>Beer</ion-label>
-      <ion-radio (ionSelect)="drinkType('beer')" checked></ion-radio>
+      <ion-radio [(ngModel)]="catalog.type" value="beer" checked></ion-radio>
     </ion-item>
 
     <ion-item>
       <ion-label>Wine</ion-label>
-      <ion-radio (ionSelect)="drinkType('wine')"></ion-radio>
+      <ion-radio [(ngModel)]="catalog.type" value="wine"></ion-radio>
     </ion-item>
 
     <ion-item>
       <ion-label>Liquor</ion-label>
-      <ion-radio (ionSelect)="drinkType('liquor')"></ion-radio>
+      <ion-radio [(ngModel)]="catalog.type" value="liquor"></ion-radio>
+    </ion-item>  -->
+
+  </ion-list>
+
+  <button ion-button color="light" (click)="addOccurance()">Submit</button>
+  <!-- <button ion-button color="light" (click)="setData()">Set Data</button>
+  <button ion-button color="light" (click)="getData()">Get Data</button> -->
+  <ion-list>
+    <ion-item *ngFor="let dev of catalog">
+      <h2>drink type: {{ catalog.type }}</h2>
+      <p>on: {{ catalog.occurance }}</p>
     </ion-item>
   </ion-list>
 
-  <button ion-button color="light" (click)="submitDrink()">Submit</button>
-  <button ion-button color="light" (click)="setData()">Set Data</button>
-  <button ion-button color="light" (click)="getData()">Get Data</button>
 
 </ion-content>

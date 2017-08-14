@@ -16,7 +16,7 @@ export class DatabaseProvider {
     this.databaseReady = new BehaviorSubject(false);
     this.platform.ready().then(() => {
       this.sqlite.create({
-        name: 'developers.db',
+        name: 'catalog.db',
         location: 'default'
       })
         .then((db: SQLiteObject) => {
@@ -45,9 +45,9 @@ export class DatabaseProvider {
       });
   }
 
-  addDeveloper(name, skill, years) {
-    let data = [name, skill, years]
-    return this.database.executeSql("INSERT INTO developer (name, skill, yearsOfExperience) VALUES (?, ?, ?)", data).then(data => {
+  addOccurance(type, occurance) {
+    let data = [type, occurance]
+    return this.database.executeSql("INSERT INTO catalog (type, occurance) VALUES (?, ?)", data).then(data => {
       return data;
     }, err => {
       console.log('Error: ', err);
@@ -55,15 +55,15 @@ export class DatabaseProvider {
     });
   }
 
-  getAllDevelopers() {
-    return this.database.executeSql("SELECT * FROM developer", []).then((data) => {
-      let developers = [];
+  getAllOccurances() {
+    return this.database.executeSql("SELECT * FROM catalog", []).then((data) => {
+      let catalog = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          developers.push({ name: data.rows.item(i).name, skill: data.rows.item(i).skill, yearsOfExperience: data.rows.item(i).yearsOfExperience });
+          catalog.push({ type: data.rows.item(i).type, occurance: data.rows.item(i).occurance});
         }
       }
-      return developers;
+      return catalog;
     }, err => {
       console.log('Error: ', err);
       return [];
