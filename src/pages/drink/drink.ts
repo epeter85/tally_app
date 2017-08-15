@@ -19,18 +19,17 @@ import { HomePage } from '../home/home';
 })
 export class DrinkPage {
 
-  catalogItem = {};
-  catalog = [];
-
-  private currentDrink: string = 'beer';
   homePage = HomePage;
 
+  private drinks;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private databaseprovider: DatabaseProvider, private platform: Platform) {
-    this.databaseprovider.getDatabaseState().subscribe(rdy => {
-      if (rdy) {
-          this.loadCatalogData();
-      }
-    })
+
+    // this.databaseprovider.getDatabaseState().subscribe(rdy => {
+    //   if (rdy) {
+    //       this.loadCatalogData();
+    //   }
+    // })
   }
 
   loadCatalogData() {
@@ -41,27 +40,24 @@ export class DrinkPage {
   }
 
   addOccurance() {
-    console.log('addOccurance');
-    console.log(this.catalog);
-    //get current drink
-    //get time
+
     let currentTime = new Date();
 
-    this.databaseprovider.addOccurance(this.catalogItem['type'], this.catalogItem['occurance'])
-    .then(data => {
-      this.loadCatalogData();
-    });
-    this.catalogItem = {};
-    this.presentToast();
+    // this.databaseprovider.addOccurance(this.catalogItem['type'], this.catalogItem['occurance'])
+    // .then(data => {
+    //   this.loadCatalogData();
+    // });
+    // this.catalogItem = {};
+    this.presentToast(this.drinks, currentTime);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DrinkPage');
   }
 
-  presentToast() {
+  presentToast(item, time) {
     let toast = this.toastCtrl.create({
-      message: 'Drink logged successfully',
+      message: item + ' logged successfully at ' + time,
       duration: 1500
     });
 
