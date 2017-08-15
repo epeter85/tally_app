@@ -19,35 +19,38 @@ import { HomePage } from '../home/home';
 })
 export class DrinkPage {
 
+  catalog = [];
   homePage = HomePage;
 
   private drinks;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private databaseprovider: DatabaseProvider, private platform: Platform) {
 
-    // this.databaseprovider.getDatabaseState().subscribe(rdy => {
-    //   if (rdy) {
-    //       this.loadCatalogData();
-    //   }
-    // })
+    this.databaseprovider.getDatabaseState().subscribe(rdy => {
+      if (rdy) {
+          this.loadCatalogData();
+      }
+    })
   }
 
   loadCatalogData() {
     console.log('loadCatalogData');
-    // this.databaseprovider.getAllOccurances().then(data => {
-    //   this.catalog = data;
-    // })
+    this.databaseprovider.getAllOccurances().then(data => {
+      this.catalog = data;
+      console.log('data = ' + data);
+    })
   }
 
   addOccurance() {
 
     let currentTime = new Date();
 
-    // this.databaseprovider.addOccurance(this.catalogItem['type'], this.catalogItem['occurance'])
-    // .then(data => {
-    //   this.loadCatalogData();
-    // });
-    // this.catalogItem = {};
+    this.databaseprovider.addOccurance(this.drinks['type'], currentTime['occurance'])
+    .then(data => {
+      this.loadCatalogData();
+    });
+    //this.catalogItem = {};
+
     this.presentToast(this.drinks, currentTime);
   }
 
@@ -67,79 +70,5 @@ export class DrinkPage {
 
     toast.present();
   }
-
-  // drinkType(drink) {
-  //   this.currentDrink = drink;
-  // }
-
-  // submitDrink() {
-  //
-  //   let checkNode = this.getData(this.currentDrink)
-  //   if (checkNode) {
-  //     this.setData(this.currentDrink);
-  //   }else{
-  //
-  //   }
-
-    //this.setData();
-
-
-
-    //this.storage.set('beer', currentTime);
-
-    //let currentDrinkArray = this.storage.get(this.currentDrink);
-    //let currentDrinkArray = [];
-    //let currentTime = new Date();
-    //let beerArray = {
-      //numberBeers: '1',
-      //dateDrunk: currentTime
-    //}
-    //currentDrinkArray.push(beerArray);
-    //this.storage.set('drinkKey', currentDrinkArray);
-
-    //let checkStat = this.storage.get('drinkKey');
-    //console.log(checkStat);*/
-
-    //console.log('this drink is ' + this.currentDrink);
-    //console.log ( this.storage.get(this.currentDrink) );
-
-    //let test = this.storage.get(this.currentDrink);
-    //let parsetest = JSON.parse(data[test]).results;
-    //console.log ( JSON.parse(this.storage.get(this.currentDrink)) )
-    //this.navCtrl.push(this.homePage);
-
-    //check if array exists
-    //if(currentDrinkArray) {
-    //  let currentTime = new Date();
-      //console.log('logging a ' + this.currentDrink + ' at ' + currentTime)
-    //  this.storage.set(this.currentDrink, currentTime);
-  //  }else{
-      //array did not exist
-      //console.log('create array')
-    //}
-
-    //save to local storage
-    //this.storage.set(this.currentDrink, 1);
-
-    // this.presentToast();
-
-    //this.storage.get('beer').then((val) => {
-    //  console.log(this.currentDrink + ' =', val);
-    //});
-  // }
-
-  // setData(node) {
-  //   let currentTime = new Date();
-  //   this.storage.set(node, currentTime);
-  // }
-  //
-  // getData(node) {
-  //
-  //   this.storage.get(node).then((data) => {
-  //     console.log(data);
-  //     return(data);
-  //   });
-  //
-  // }
 
 }
