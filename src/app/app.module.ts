@@ -12,14 +12,6 @@ import { DrinkPage } from '../pages/drink/drink';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { IonicStorageModule } from '@ionic/storage';
-import { HttpModule } from '@angular/http';
-
-import { DatabaseProvider } from '../providers/database/database';
-
-import { SQLitePorter } from '@ionic-native/sqlite-porter';
-import { SQLite } from '@ionic-native/sqlite';
-
 @NgModule({
   declarations: [
     MyApp,
@@ -31,9 +23,7 @@ import { SQLite } from '@ionic-native/sqlite';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,10 +37,7 @@ import { SQLite } from '@ionic-native/sqlite';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider,
-    SQLitePorter,
-    SQLite
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
