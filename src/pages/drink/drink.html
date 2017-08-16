@@ -14,7 +14,7 @@
       Log a drink
     </ion-list-header>
 
-     <ion-item>
+    <ion-item>
       <ion-label>Beer</ion-label>
       <ion-radio value="beer" checked></ion-radio>
     </ion-item>
@@ -32,7 +32,8 @@
   </ion-list>
 
   <button ion-button color="light" (click)="addOccurance()">Submit</button>
-
+  <button ion-button color="dark" (click)="getStorage()">Get Storage</button>
+  <button ion-button color="dark" (click)="clearStorage()">Clear Storage</button>
   <!-- <ion-list>
     <ion-item *ngFor="let dev of catalog">
       <h2>drink type: {{ catalog.type }}</h2>
