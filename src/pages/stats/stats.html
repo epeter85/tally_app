@@ -6,4 +6,23 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-list-header>
+      <ion-icon name="wine" item-start> Drinks</ion-icon>
+    </ion-list-header>
+    <ion-item><div [innerHTML]="drinksToday"></div></ion-item>
+    <ion-item><div [innerHTML]="drinksWeek"></div></ion-item>
+    <ion-item><div [innerHTML]="drinksMonth"></div></ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-icon name="bonfire" item-start> Smoke</ion-icon>
+    </ion-list-header>
+    <ion-item><div [innerHTML]="smokesToday"></div></ion-item>
+    <ion-item><div [innerHTML]="smokesWeek"></div></ion-item>
+    <ion-item><div [innerHTML]="smokesMonth"></div></ion-item>
+  </ion-list>
+
+
 </ion-content>

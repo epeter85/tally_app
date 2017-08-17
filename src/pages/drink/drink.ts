@@ -26,8 +26,6 @@ export class DrinkPage {
 
   }
 
-
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad DrinkPage');
   }
@@ -69,7 +67,7 @@ export class DrinkPage {
   }
 
   presentToast(item, time) {
-    
+
     let toast = this.toastCtrl.create({
       message: item + ' logged successfully at ' + time,
       duration: 1500
