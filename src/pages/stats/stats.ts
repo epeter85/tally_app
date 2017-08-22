@@ -13,12 +13,12 @@ export class StatsPage {
   private smokesArray = [];
 
   private drinksToday;
-  private drinksWeek = "Week: 5";
-  private drinksMonth = "Month: 5";
+  private drinksWeek;
+  private drinksMonth;
 
-  private smokesToday = "Today: 5";
-  private smokesWeek = "Week: 5";
-  private smokesMonth = "Month: 5";
+  private smokesToday;
+  private smokesWeek;
+  private smokesMonth;
 
   constructor(public navCtrl: NavController, private storage: Storage) {
 
@@ -26,21 +26,47 @@ export class StatsPage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad StatPage');
-    this.loadStats();
 
+    this.drinksArray = [];
+    this.smokesArray = [];
+    this.loadStats();
   }
 
   getStats(array, time) {
 
-    let number;
-
+    let number = 0;
+    let currentTime = new Date();
+    let currentMS = currentTime.getTime();
+    
     if (time == 'today') {
-      
-    }
-    //console.log('drinks = ' + this.drinksArray);
-    //console.log('smokes = ' + this.smokesArray);
 
-    //this.drinksToday = "Today: 5";
+      for (let entry of array) {
+
+        if ( (currentMS - entry) < 86400000) {
+          number = number + 1;
+        }
+      }
+    }
+
+    if (time == 'week') {
+
+      for (let entry of array) {
+
+        if ((currentMS - entry) < 604800000){
+          number = number + 1;
+        }
+      }
+    }
+
+    if (time == 'month') {
+
+      for (let entry of array) {
+
+        if ((currentMS - entry) < 2592000000){
+          number = number + 1;
+        }
+      }
+    }
 
     return number
 
@@ -59,7 +85,15 @@ export class StatsPage {
       }
 
     }).then(() => {
-        this.smokesToday = this.getStats(this.drinksArray, 'today');
+
+        this.drinksToday = "Today : " + this.getStats(this.drinksArray, 'today');
+        this.drinksWeek = "Week : " + this.getStats(this.drinksArray, 'week');
+        this.drinksMonth = "Month : " + this.getStats(this.drinksArray, 'month');
+
+        this.smokesToday = "Today : " + this.getStats(this.smokesArray, 'today');
+        this.smokesWeek = "Week : " + this.getStats(this.smokesArray, 'week');
+        this.smokesMonth = "Month : " + this.getStats(this.smokesArray, 'month');
+
     });
 
   }
